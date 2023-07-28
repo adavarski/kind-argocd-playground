@@ -119,4 +119,7 @@ davar@carbon:~/Documents/TRAININGS-Summer-2023/ARGO-MON/kind-argocd-playground$
 
 ```
 <img src="pictures/ArgoCD-applications.png?raw=true" width="1000">
+
+<img src="pictures/Grafana-DataSources.png?raw=true" width="1000">
+
 <img src="pictures/Grafana-UI.png?raw=true" width="1000">
