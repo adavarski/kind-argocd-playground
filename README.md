@@ -137,7 +137,10 @@ victoriametrics      vmsingle-database                                    Cluste
 
 <img src="pictures/Grafana-UI.png?raw=true" width="1000">
 
-### Clean env
+<img src="pictures/Grafana-UI-ArgoCD-performance.png?raw=true" width="1000">
+
+
+### Clean environment
 ```
 make shutdown-k8s
 ```
