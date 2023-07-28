@@ -10,8 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build image
-        run: docker build -t ghcr.io/zoetrope/dummy-metrics:latest .
+        run: docker build -t ghcr.io/adavarski/dummy-metrics:latest .
       - name: Login to ghcr.io
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
       - name: Push image
-        run: docker push ghcr.io/zoetrope/dummy-metrics:latest
+        run: docker push ghcr.io/adavarski/dummy-metrics:latest
