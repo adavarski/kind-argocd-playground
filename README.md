@@ -1,5 +1,11 @@
 ## KinD: Argo CD, Grafana, Prometheus, Loki, Tempo, Phlare and VictoriaMetrics.
 
+- Loki is a horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus. It is designed to be very cost effective and easy to operate, as it does not index the contents of the logs, but rather a set of labels for each log stream.
+
+- Grafana Tempo is an open source, easy-to-use, and high-scale distributed tracing backend. Tempo is cost-efficient, requiring only object storage to operate, and is deeply integrated with Grafana, Prometheus, and Loki. Tempo can ingest common open source tracing protocols, including Jaeger, Zipkin, and OpenTelemetry.
+
+I am assuming you are already familiar with Grafana and Prometheus
+
 ### Usage:
 ```
 make launch-k8s
