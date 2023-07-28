@@ -1,4 +1,4 @@
-# kind-argocd-playground
+## KinD: argocd-playground (monitoring Loki, Tempo, VictoriaMeterics)
 
 ```
 make launch-k8s
