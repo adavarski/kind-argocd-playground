@@ -17,8 +17,8 @@ phlare
 prometheus-adapter
 tempo
 victoriametrics
-prometheus
 monitoring
+prometheus
 sandbox
 ```
 <img src="pictures/ArgoCD-applications.png?raw=true" width="1000">
