@@ -12,7 +12,7 @@ $ kubectl get secrets -n prometheus prometheus-grafana -o jsonpath="{.data.admin
 $ kubectl port-forward svc/prometheus-grafana 3000:80 -n prometheus
 
 ```
-### Browser (ArgoCD) : https://localhost:8080 -> Sync apps in this order via argocd UI
+### Browser (ArgoCD) : https://localhost:8080 -> Sync apps in this order via ArgoCD UI!
 ```
 $ kustomize build ./manifests/applications/ | yq ea [.] -o json | jq -r '. | sort_by(.metadata.annotations."argocd.argoproj.io/sync-wave" // "0" | tonumber) | .[] | .metadata.name'
 namespaces
@@ -26,9 +26,9 @@ monitoring
 prometheus
 sandbox
 ```
-Check
+### Check apps
 ```
-$ kubectl get po --all-namespaces|grep -v sand
+$ kubectl get po --all-namespaces
 NAMESPACE            NAME                                                         READY   STATUS             RESTARTS   AGE
 argocd               argocd-application-controller-0                              1/1     Running            0          32m
 argocd               argocd-applicationset-controller-6477f4dc9-d24w5             1/1     Running            0          32m
@@ -77,7 +77,7 @@ victoriametrics      victoriametrics-victoria-metrics-operator-786cbbd895-vcgzn 
 victoriametrics      vmagent-vmagent-5d4bc68b54-bvms8                             2/2     Running            0          7m16s
 victoriametrics      vmsingle-database-6d4bbfffc4-tnxwm                           1/1     Running            0          7m19s
 
-$ kubectl get svc --all-namespaces|grep -v sand
+$ kubectl get svc --all-namespaces
 NAMESPACE            NAME                                                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                                                                   AGE
 argocd               argocd-application-controller-metrics                ClusterIP   10.96.213.107   <none>        8082/TCP                                                                                                  32m
 argocd               argocd-applicationset-controller                     ClusterIP   10.96.47.210    <none>        7000/TCP                                                                                                  34m
@@ -119,6 +119,8 @@ victoriametrics      vmsingle-database                                    Cluste
 
 ```
 ### Screenshots:
+
+### Browser (ArgoCD) : https://localhost:8080
 
 <img src="pictures/ArgoCD-applications.png?raw=true" width="1000">
 
