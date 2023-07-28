@@ -1,0 +1,17 @@
+# HELP dummy_metric_total A number of dummy metrics
+# TYPE dummy_metric_total counter
+dummy_metric_total 1 2 3 _ 4 5 6 _x2
+# HELP dummy_metric_gauge A gauge of dummy metrics
+# TYPE dummy_metric_gauge gauge
+dummy_metric_gauge{a="b"} 1 3 3-10x4
+# HELP dummy_metrics_histogram A histogram of dummy metrics.
+# TYPE dummy_metrics_histogram histogram
+dummy_metrics_histogram_bucket{le="0.25"} 2
+dummy_metrics_histogram_bucket{le="0.5"} 4
+dummy_metrics_histogram_bucket{le="1"} 5
+dummy_metrics_histogram_bucket{le="2.5"} 8
+dummy_metrics_histogram_bucket{le="5"} 10
+dummy_metrics_histogram_bucket{le="10"} 18
+dummy_metrics_histogram_bucket{le="+Inf"} 20
+dummy_metrics_histogram_sum{} 123.45
+dummy_metrics_histogram_count{} 20

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dummy-metrics
-          image: ghcr.io/adavarski/dummy-metrics:latest
+          image: davarski/dummy-metrics:latest
           imagePullPolicy: Always
           command: ["/dummy-metrics", "/config/metrics.txt"]
           ports:

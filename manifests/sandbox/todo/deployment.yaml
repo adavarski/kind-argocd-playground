@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: todo
-          image: ghcr.io/adavarski/todo:latest
+          image: davarski/todo:latest
           imagePullPolicy: Always
           command: ["/todo"]
           ports:
