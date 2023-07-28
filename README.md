@@ -1,4 +1,4 @@
-## KinD: ArgoCD Playground (Monitoring Stack: Loki, Grafana, Tempo, Prometheus, VictoriaMeterics)
+## KinD: Argo CD, Grafana, Prometheus, Loki, Tempo, Phlare and VictoriaMetrics.
 
 ```
 make launch-k8s
