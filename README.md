@@ -12,7 +12,7 @@ $ kubectl get secrets -n prometheus prometheus-grafana -o jsonpath="{.data.admin
 $ kubectl port-forward svc/prometheus-grafana 3000:80 -n prometheus
 
 ```
-### Browser (ArgoCD) : https://localhost:8080 -> Sync apps in this order via ArgoCD UI!
+### Browser (ArgoCD) : https://localhost:8080 -> Sync apps in this order via ArgoCD UI! (TODO: fix `make sync-applications`)
 ```
 $ kustomize build ./manifests/applications/ | yq ea [.] -o json | jq -r '. | sort_by(.metadata.annotations."argocd.argoproj.io/sync-wave" // "0" | tonumber) | .[] | .metadata.name'
 namespaces
@@ -129,5 +129,10 @@ victoriametrics      vmsingle-database                                    Cluste
 <img src="pictures/Grafana-DataSources.png?raw=true" width="1000">
 
 <img src="pictures/Grafana-UI.png?raw=true" width="1000">
+
+### Clean env
+```
+make shutdown-k8s
+```
 
 Credits: https://github.com/zoetrope/k8s-hands-on
