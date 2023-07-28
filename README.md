@@ -131,7 +131,7 @@ victoriametrics      vmsingle-database                                    Cluste
 
 <img src="pictures/ArgoCD-applications.png?raw=true" width="1000">
 
-### Browser (Grafana): https://localhost:3000 
+### Browser (Grafana): http://localhost:3000 
 
 <img src="pictures/Grafana-DataSources.png?raw=true" width="1000">
 
