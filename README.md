@@ -127,3 +127,5 @@ victoriametrics      vmsingle-database                                    Cluste
 <img src="pictures/Grafana-DataSources.png?raw=true" width="1000">
 
 <img src="pictures/Grafana-UI.png?raw=true" width="1000">
+
+Credits: https://github.com/zoetrope/k8s-hands-on
