@@ -24,7 +24,7 @@ $ kubectl get secrets -n prometheus prometheus-grafana -o jsonpath="{.data.admin
 $ kubectl port-forward svc/prometheus-grafana 3000:80 -n prometheus
 
 ```
-### Browser (ArgoCD) : https://localhost:8080 -> Sync apps in below sort order via ArgoCD UI! (Todo: fix `make sync-applications`)
+### Browser (ArgoCD) : https://localhost:8080 -> Sync apps in below order, based on Argo sync-wave annotation via ArgoCD UI! (Todo: fix `make sync-applications`)
 ```
 ### Sort applications by Argo sync-wave annotation 
 $ kustomize build ./manifests/applications/ | yq ea [.] -o json | jq -r '. | sort_by(.metadata.annotations."argocd.argoproj.io/sync-wave" // "0" | tonumber) | .[] | .metadata.name'
