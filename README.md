@@ -1,5 +1,6 @@
 ## KinD: Argo CD, Grafana, Prometheus, Loki, Tempo, Phlare and VictoriaMetrics.
 
+### Usage:
 ```
 make launch-k8s
 make deploy-argocd
@@ -11,7 +12,7 @@ $ kubectl get secrets -n prometheus prometheus-grafana -o jsonpath="{.data.admin
 $ kubectl port-forward svc/prometheus-grafana 3000:80 -n prometheus
 
 ```
-Browser: https://localhost:8080 -> Sync apps in this order via argocd UI
+### Browser (ArgoCD) : https://localhost:8080 -> Sync apps in this order via argocd UI
 ```
 $ kustomize build ./manifests/applications/ | yq ea [.] -o json | jq -r '. | sort_by(.metadata.annotations."argocd.argoproj.io/sync-wave" // "0" | tonumber) | .[] | .metadata.name'
 namespaces
@@ -117,7 +118,11 @@ victoriametrics      vmagent-vmagent                                      Cluste
 victoriametrics      vmsingle-database                                    ClusterIP   10.96.163.98    <none>        8429/TCP                                                                                                  7m28s
 
 ```
+### Screenshots:
+
 <img src="pictures/ArgoCD-applications.png?raw=true" width="1000">
+
+### Browser (Grafana): https://localhost:3000 
 
 <img src="pictures/Grafana-DataSources.png?raw=true" width="1000">
 
