@@ -15,6 +15,8 @@ jobs:
         with:
           go-version: ${{ env.go-version }}
       - run: docker build -t ghcr.io/adavarski/todo:latest ./todo
+      - run: docker build -t ghcr.io/adavarski/dummy-metrics:latest ./dummy-metrics
       - name: Login to ghcr.io
         run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
       - run: docker push ghcr.io/adavarski/todo:latest
+      - run: docker push ghcr.io/adavarski/dummy-metrics:latest
