@@ -115,7 +115,6 @@ tempo                tempo                                                Cluste
 victoriametrics      victoriametrics-victoria-metrics-operator            ClusterIP   10.96.105.52    <none>        8080/TCP,443/TCP                                                                                          11m
 victoriametrics      vmagent-vmagent                                      ClusterIP   10.96.205.86    <none>        8429/TCP                                                                                                  7m25s
 victoriametrics      vmsingle-database                                    ClusterIP   10.96.163.98    <none>        8429/TCP                                                                                                  7m28s
-davar@carbon:~/Documents/TRAININGS-Summer-2023/ARGO-MON/kind-argocd-playground$ 
 
 ```
 <img src="pictures/ArgoCD-applications.png?raw=true" width="1000">
