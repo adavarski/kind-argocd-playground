@@ -23,8 +23,8 @@ phlare
 prometheus-adapter
 tempo
 victoriametrics
-monitoring
 prometheus
+monitoring
 sandbox
 ```
 ### Check apps
