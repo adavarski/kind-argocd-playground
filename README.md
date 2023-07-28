@@ -6,7 +6,9 @@
 
 - VictoriaMetrics is a fast, cost-effective and scalable monitoring solution and time series database.
 
-I am assuming you are already familiar with Grafana and Prometheus
+- Prometheus
+
+- Grafana 
 
 ### Usage:
 ```
