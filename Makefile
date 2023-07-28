@@ -26,6 +26,7 @@ deploy-argocd: ## Deploy Argo CD on Kubernetes cluster
 	kustomize build ./manifests/applications | kubectl apply -f -
         # enable Argo CD metrics Service and ServiceMonitor
 	helm upgrade -f ./manifests/argocd/values.yaml --namespace argocd argocd argo/argo-cd
+	kubectl -n argocd wait --for=condition=available --timeout=300s --all deployments
 
 .PHONY: sync-applications
 sync-applications: ## Sync Applications
