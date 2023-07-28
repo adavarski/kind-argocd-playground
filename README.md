@@ -21,3 +21,5 @@ prometheus
 monitoring
 sandbox
 ```
+<img src="pictures/ArgoCD-applications.png?raw=true" width="1000">
+<img src="pictures/Grafana-UI.png?raw=true" width="1000">
