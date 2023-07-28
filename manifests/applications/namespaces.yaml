@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: namespaces
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/adavarski/kind-argocd-playground.git
+    targetRevision: main
+    path: manifests/namespaces
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default

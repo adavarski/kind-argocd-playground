@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: victoriametrics
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://victoriametrics.github.io/helm-charts/
+    chart: victoria-metrics-operator
+    targetRevision: 0.24.1
+    helm:
+      version: v3
+      parameters:
+        - name: rbac.pspEnabled
+          value: "false"
+        - name: operator.prometheus_converter_add_argocd_ignore_annotations
+          value: "true"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: victoriametrics

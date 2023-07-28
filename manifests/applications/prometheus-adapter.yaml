@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-adapter
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: prometheus-adapter
+    targetRevision: 4.2.0
+    helm:
+      version: v3
+      values: |
+        prometheus:
+          url: http://prometheus-kube-prometheus-prometheus.prometheus.svc
+          port: 9090
+          path: ""
+        rules:
+          default: true
+          custom: []
+          existing:
+          external: []
+          resource:
+            cpu:
+              containerQuery: sum(rate(container_cpu_usage_seconds_total{<<.LabelMatchers>>, container!=""}[3m])) by (<<.GroupBy>>)
+              nodeQuery: sum(rate(container_cpu_usage_seconds_total{<<.LabelMatchers>>, id='/'}[3m])) by (<<.GroupBy>>)
+              resources:
+                overrides:
+                  node:
+                    resource: node
+                  namespace:
+                    resource: namespace
+                  pod:
+                    resource: pod
+              containerLabel: container
+            memory:
+              containerQuery: sum(container_memory_working_set_bytes{<<.LabelMatchers>>, container!=""}) by (<<.GroupBy>>)
+              nodeQuery: sum(container_memory_working_set_bytes{<<.LabelMatchers>>,id='/'}) by (<<.GroupBy>>)
+              resources:
+                overrides:
+                  node:
+                    resource: node
+                  namespace:
+                    resource: namespace
+                  pod:
+                    resource: pod
+              containerLabel: container
+            window: 3m
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prometheus-adapter

@@ -1,0 +1,66 @@
+## Application controller
+controller:
+  ## Application controller metrics configuration
+  metrics:
+    # -- Deploy metrics service
+    enabled: true
+    serviceMonitor:
+      # -- Enable a prometheus ServiceMonitor
+      enabled: true
+      # -- Prometheus ServiceMonitor namespace
+      namespace: "prometheus" # "monitoring"
+      # -- Prometheus ServiceMonitor labels
+      additionalLabels:
+        release: prometheus
+  # -- Annotations to be added to application controller pods
+  podAnnotations:
+    phlare.grafana.com/scrape: "true"
+    phlare.grafana.com/port: "8082"
+
+## Server
+server:
+  ## Server metrics service configuration
+  metrics:
+    # -- Deploy metrics service
+    enabled: true
+    serviceMonitor:
+      # -- Enable a prometheus ServiceMonitor
+      enabled: true
+      # -- Prometheus ServiceMonitor namespace
+      namespace: "prometheus"  # monitoring
+      # -- Prometheus ServiceMonitor labels
+      additionalLabels:
+        release: prometheus
+
+## Repo Server
+repoServer:
+  ## Repo server metrics service configuration
+  metrics:
+    # -- Deploy metrics service
+    enabled: true
+    serviceMonitor:
+      # -- Enable a prometheus ServiceMonitor
+      enabled: true
+      # -- Prometheus ServiceMonitor namespace
+      namespace: "prometheus" # "monitoring"
+      # -- Prometheus ServiceMonitor labels
+      additionalLabels:
+        release: prometheus
+
+## Argo Configs
+configs:
+  # Argo CD configuration parameters
+  ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cmd-params-cm.yaml
+  params:
+    ## Generic parameters
+    # -- Open-Telemetry collector address: (e.g. "otel-collector:4317")
+    otlp.address: 'tempo.tempo.svc:4317'
+
+## Globally shared configuration
+global:
+  # Default logging options used by all components
+  logging:
+    # -- Set the global logging format. Either: `text` or `json`
+    format: text
+    # -- Set the global logging level. One of: `debug`, `info`, `warn` or `error`
+    level: debug

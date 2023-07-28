@@ -1,0 +1,88 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  project: default
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 48.1.2
+    helm:
+      version: v3
+      values: |
+        prometheusOperator:
+          admissionWebhooks:
+            patch:
+              enabled: false
+            certManager:
+              enabled: true
+        kube-state-metrics:
+          extraArgs:
+            - --metric-labels-allowlist
+            - namespaces=[team]
+        grafana:
+          env:
+            GF_FEATURE_TOGGLES_ENABLE: flameGraph
+            GF_AUTH_ANONYMOUS_ENABLED: "true"
+            GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+            GF_DIAGNOSTICS_PROFILING_ENABLED: "true"
+            GF_DIAGNOSTICS_PROFILING_ADDR: "0.0.0.0"
+            GF_DIAGNOSTICS_PROFILING_PORT: "6060"
+          podAnnotations:
+            phlare.grafana.com/scrape: "true"
+            phlare.grafana.com/port: "6060"
+          additionalDataSources:
+            - name: Loki
+              type: loki
+              access: proxy
+              url: http://loki.loki.svc:3100
+              version: 1
+              isDefault: false
+              editable: false
+              jsonData:
+                tlsSkipVerify: true
+                timeInterval: "30s"
+                derivedFields:
+                  - datasourceUid: Tempo
+                    matcherRegex: "\"traceID\": \"([a-z0-9]+)\""
+                    name: TraceID
+                    url: $${__value.raw}
+            - name: VictoriaMetrics
+              type: prometheus
+              access: proxy
+              url: http://vmsingle-database.victoriametrics:8429
+              isDefault: false
+              version: 1
+              editable: true
+              jsonData:
+                tlsSkipVerify: true
+                timeInterval: "30s"
+            - name: Tempo
+              type: tempo
+              access: proxy
+              url: http://tempo.tempo.svc:3100
+              isDefault: false
+              version: 1
+              editable: true
+            - name: Phlare
+              type: phlare
+              access: proxy
+              url: http://phlare.phlare.svc:4100
+              isDefault: false
+              version: 1
+              editable: true
+          sidecar:
+            dashboards:
+              enabled: true
+              provider:
+                foldersFromFilesStructure: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prometheus
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true

@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "config:base",
+    "github>aquaproj/aqua-renovate-config#1.7.0",
+    ":timezone(Asia/Tokyo)"
+  ],
+  "postUpdateOptions": [
+    "gomodTidy"
+  ],
+  "argocd": {
+    "fileMatch": [
+      "^manifests\/applications\/.*.yaml$"
+    ]
+  },
+  "automerge": true
+}

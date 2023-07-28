@@ -1,0 +1,15 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAlert
+metadata:
+  name: vmalert
+  namespace: sandbox
+spec:
+  replicaCount: 1
+  datasource:
+    url: "http://vmsingle-database.victoriametrics.svc:8429"
+  notifier:
+    url: "http://vmalertmanager-alertmanager.sandbox.svc:9093"
+  evaluationInterval: "30s"
+  ruleNamespaceSelector:
+    matchLabels:
+      kubernetes.io/metadata.name: sandbox

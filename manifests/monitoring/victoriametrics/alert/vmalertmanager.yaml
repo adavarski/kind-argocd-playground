@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: alertmanager-setting
+  namespace: sandbox
+type: Opaque
+stringData:
+  alertmanager.yaml: |
+    route:
+      receiver: slack
+    receivers:
+      - name: 'slack'
+        slack_configs:
+          - api_url: 'https://hooks.slack.com/services/xxxxx'
+            channel: '#xxxxx'
+            text: "{{ .CommonAnnotations.summary }}"
+            send_resolved: true
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAlertmanager
+metadata:
+  name: alertmanager
+  namespace: sandbox
+spec:
+  replicaCount: 1
+  configSecret: alertmanager-setting

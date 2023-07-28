@@ -1,0 +1,21 @@
+{
+  "name": "todo",
+  "version": "0.2.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel ./src/index.html",
+    "build": "rm -rf dist/* && parcel build ./src/index.html"
+  },
+  "author": "adavarski",
+  "license": "MIT",
+  "dependencies": {
+    "alpinejs": "3.12.3",
+    "tailwindcss": "3.3.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.14",
+    "parcel": "2.9.3",
+    "postcss": "8.4.27",
+    "postcss-import": "15.1.0"
+  }
+}

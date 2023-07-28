@@ -1,0 +1,16 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMRule
+metadata:
+  name: vmrule
+  namespace: sandbox
+spec:
+  groups:
+    - name: todo
+      rules:
+        - alert: TodoErrorsHigh
+          expr: sum(rate(todo_api_requests_total{code="500"}[5m]))/sum(rate(todo_api_requests_total[5m])) > 0.3
+          for: 60s
+          labels:
+            severity: error
+          annotations:
+            summary: "Todo is returning errors for {{ $value }}% of requests"
