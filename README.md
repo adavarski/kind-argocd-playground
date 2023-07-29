@@ -50,6 +50,11 @@ victoriametrics
 prometheus
 monitoring
 sandbox
+
+###Using argocd CLI example
+kustomize build ./manifests/applications/ | yq ea [.] -o json | jq -r '. | sort_by(.metadata.annotations."argocd.argoproj.io/sync-wave" // "0" | tonumber) | .[] | .metadata.name' > apps-sync.sort
+for app in `cat apps-sync.sort`; do argocd app sync $app --retry-limit 3 --timeout 300; done
+
 ```
 ### Check apps
 ```
