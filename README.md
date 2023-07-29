@@ -20,6 +20,7 @@
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/)
 - [helm](https://helm.sh/docs/intro/install/)
 - [yq](https://github.com/mikefarah/yq)
+- [argocd CLI](https://argo-cd.readthedocs.io/en/stable/cli_installation/)
 
 
 ### Usage:
