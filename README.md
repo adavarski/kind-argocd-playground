@@ -12,6 +12,16 @@
 
 - `Grafana` 
 
+## Requirements
+
+- Linux OS
+- [Docker](https://docs.docker.com/)
+- [KinD](https://kind.sigs.k8s.io/)
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/)
+- [helm](https://helm.sh/docs/intro/install/)
+- [yq](https://github.com/mikefarah/yq)
+
+
 ### Usage:
 ```
 make launch-k8s
