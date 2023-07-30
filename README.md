@@ -1,4 +1,4 @@
-## KinD: Argo CD, Grafana, Prometheus, Loki, Tempo, Phlare and VictoriaMetrics.
+## KinD: ArgoCD, Grafana, Prometheus, Loki, Tempo, Phlare and VictoriaMetrics.
 
 - `Loki` is a horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus. It is designed to be very cost effective and easy to operate, as it does not index the contents of the logs, but rather a set of labels for each log stream.
 
