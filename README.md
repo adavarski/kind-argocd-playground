@@ -29,14 +29,22 @@ make launch-k8s
 make deploy-argocd
 
 kubectl port-forward service/argocd-server -n argocd 8080:443 &
+### Browser (ArgoCD) : https://localhost:8080
+
 kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 argocd login localhost:8080 --grpc-web --insecure --username admin --password $(kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 
 kubectl get secrets -n prometheus prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d
 kubectl port-forward svc/prometheus-grafana 3000:80 -n prometheus
+### Browser (Grafana) : https://localhost:3000
 
 ```
-### Browser (ArgoCD) : https://localhost:8080 -> Sync apps in below order, based on Argo sync-wave annotation via ArgoCD UI! (Todo: fix `make sync-applications`)
+### Sync apps in below order, based on Argo sync-wave annotation via ArgoCD UI or using `make sync-applications` ! 
+
+```
+make sync-applications
+```
+Explanation (Argo sync-wave annotation):
 ```
 ### Sort applications by Argo sync-wave annotation 
 $ kustomize build ./manifests/applications/ | yq ea [.] -o json | jq -r '. | sort_by(.metadata.annotations."argocd.argoproj.io/sync-wave" // "0" | tonumber) | .[] | .metadata.name'
