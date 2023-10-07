@@ -1,5 +1,7 @@
 ## KinD: ArgoCD, Grafana, Prometheus, Loki, Tempo, Phlare and VictoriaMetrics.
 
+- `ArgoCD` is a tool for automating continuous delivery of applications to Kubernetes clusters. It uses GitOps methodology to synchronize the desired state of the application with the actual state in the cluster.
+
 - `Loki` is a horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus. It is designed to be very cost effective and easy to operate, as it does not index the contents of the logs, but rather a set of labels for each log stream.
 
 - `Grafana Tempo` is an open source, easy-to-use, and high-scale distributed tracing backend. Tempo is cost-efficient, requiring only object storage to operate, and is deeply integrated with Grafana, Prometheus, and Loki. Tempo can ingest common open source tracing protocols, including Jaeger, Zipkin, and OpenTelemetry.
@@ -8,9 +10,9 @@
 
 - `VictoriaMetrics` is a fast, cost-effective and scalable monitoring solution and time series database.
 
-- `Prometheus`
+- `Prometheus` is a monitoring and alerting tool for Kubernetes and other systems. It collects metrics from various sources, stores them in a time-series database, and allows users to query and visualize the data. It also has a built-in alerting system that can send notifications based on specific conditions.
 
-- `Grafana` 
+- `Grafana` is a tool for visualizing and analyzing data from various sources, including Prometheus. It provides a flexible and customizable dashboard that allows users to create graphs, charts, and other visualizations to monitor the performance of their systems. Grafana also has a built-in alerting system that can trigger notifications based on specific thresholds.
 
 ## Requirements
 
